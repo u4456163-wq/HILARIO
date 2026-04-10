@@ -7,3 +7,16 @@ data/output_excel/*
 data/archive/*
 !data/**/.gitkeep
 logs/*.log
+# Archivos de sistema y temporales
+.DS_Store
+.directory
+*~
+*.swp
+
+# Docker logs (si es que mapeas logs fuera del contenedor)
+docker/logs/
+
+# Archivos de distribución
+dist/
+build/
+*.egg-info/
