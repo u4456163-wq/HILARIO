@@ -1,0 +1,31 @@
+services:
+  engine:
+    build: 
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: hilario_engine
+    volumes:
+      - .:/app
+      - ./data:/app/data
+    environment:
+      - PYTHONUNBUFFERED=1
+      - PYTHONPATH=/app  # <--- AGREGA ESTA LÍNEA
+    command: python3 scripts/watchman.py
+    restart: always
+
+  sync:
+    image: syncthing/syncthing
+    container_name: hilario_sync
+    # Cambia el modo de red a 'host' para que use el WiFi de tu VivoBook directo
+    #network_mode: "host" 
+    # (Si pones network_mode: host, borra o comenta las líneas de 'ports:')
+    volumes:
+      - ./data:/var/syncthing/data
+      - ./config_sync:/var/syncthing/config
+    ports:
+      - "8384:8384" # Interfaz Web
+      - "22000:22000/tcp" # Transferencia
+      - "22000:22000/udp"
+      - "21027:21027/udp" # Descubrimiento
+
+    restart: unless-stopped
