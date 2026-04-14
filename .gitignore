@@ -7,3 +7,12 @@ data/output_excel/*
 data/archive/*
 !data/**/.gitkeep
 logs/*.log
+# Bases de datos
+*.db
+*.db-shm
+*.db-wal
+
+# Certificados
+*.pem
+*.crt
+*.key
