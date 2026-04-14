@@ -19,3 +19,7 @@ https-cert.pem
 # Python
 __pycache__/
 *.pyc
+# Bloquear todas las llaves y certificados en cualquier carpeta
+*.pem
+*.key
+*.lock
